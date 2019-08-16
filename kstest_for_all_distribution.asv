@@ -1,0 +1,22 @@
+% ks test by han zhao
+% 按照ks检验原理编写程序，可以检验任意函数。
+% function kstest_for_all_distribution()
+% end
+x = data.add_SSI;
+x1 = sort(x);
+x2 = unique(x);
+num1 = numel(x1);
+num2 = numel(x2);
+Sn = zeros(num2,1);
+x_min = x1(1);
+x_max = x1(end);
+for i = 2:num2-1
+    k = find(x2(i)<x1,1);
+    Sn(i) = (k-1)/num1;
+end
+Sn(end)=1;
+figure
+f = stairs(x2,Sn);
+% 理论值
+pd = fitgmdist(x,2);
+Fn = pd.cdf(x
